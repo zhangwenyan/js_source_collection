@@ -1,54 +1,54 @@
 /*
- *Èë¿Ú½Å±¾
+ *å…¥å£è„šæœ¬
 */
 
-//ÆÁÄ»ÏÔÊ¾×é¼şÄ£¿é
-var wallCtx;//µØÍ¼»­²¼ÉÏÏÂÎÄ
-var tankCtx;//Ì¹¿Ë»­²¼ÉÏÏÂÎÄ
-var crackCtx;//±¬Õ¨ÌØĞ§»­²¼ÉÏÏÂÎÄ
-var grassCtx;//²İµØ»­²¼ÉÏÏÂÎÄ
-var propCtx;//µÀ¾ß»­²¼ÉÏÏÂÎÄ
-var scoreCtx;//·ÖÊı»­²¼ÉÏÏÂÎÄ
-var statusCtx;//ÓÎÏ·ÖĞ×´Ì¬À¸»­²¼ÉÏÏÂÎÄ
-var intermediaryCtx;//¹Ø¿¨¹ı¶É»­²¼ÉÏÏÂÎÄ
-var overCtx;//ÓÎÏ·½áÊø»­²¼ÉÏÏÂÎÄ
-var menuCtx;//¿ªÊ¼²Ëµ¥»­²¼ÉÏÏÂÎÄ
+//å±å¹•æ˜¾ç¤ºç»„ä»¶æ¨¡å—
+var wallCtx;//åœ°å›¾ç”»å¸ƒä¸Šä¸‹æ–‡
+var tankCtx;//å¦å…‹ç”»å¸ƒä¸Šä¸‹æ–‡
+var crackCtx;//çˆ†ç‚¸ç‰¹æ•ˆç”»å¸ƒä¸Šä¸‹æ–‡
+var grassCtx;//è‰åœ°ç”»å¸ƒä¸Šä¸‹æ–‡
+var propCtx;//é“å…·ç”»å¸ƒä¸Šä¸‹æ–‡
+var scoreCtx;//åˆ†æ•°ç”»å¸ƒä¸Šä¸‹æ–‡
+var statusCtx;//æ¸¸æˆä¸­çŠ¶æ€æ ç”»å¸ƒä¸Šä¸‹æ–‡
+var intermediaryCtx;//å…³å¡è¿‡æ¸¡ç”»å¸ƒä¸Šä¸‹æ–‡
+var overCtx;//æ¸¸æˆç»“æŸç”»å¸ƒä¸Šä¸‹æ–‡
+var menuCtx;//å¼€å§‹èœå•ç”»å¸ƒä¸Šä¸‹æ–‡
 
-var GAME_STATE = GAME_STATE_MENU;//³õÊ¼×´Ì¬Ä¬ÈÏÎª¿ªÊ¼²Ëµ¥
+var GAME_STATE = GAME_STATE_MENU;//åˆå§‹çŠ¶æ€é»˜è®¤ä¸ºå¼€å§‹èœå•
 
-var collision;//¼ÆËãÅö×²µÄ¹¤¾ß¶ÔÏó
-var isPause = false;//ÊÇ·ñÔİÍ£ÓÎÏ·
+var collision;//è®¡ç®—ç¢°æ’çš„å·¥å…·å¯¹è±¡
+var isPause = false;//æ˜¯å¦æš‚åœæ¸¸æˆ
 
-var keyboard;//¼üÅÌ
-var keys = [];//¼ÇÂ¼°´ÏÂµÄ°´¼ü
-var menu;//²Ëµ¥
-var intermediary;//¹ı¶É½çÃæ
-var stage;//ÎèÌ¨
-var player = null;//Íæ¼Ò1
-var player2 = null;//Íæ¼Ò2
-var enemyArray = [];//µĞ·½Ì¹¿Ë
-var prop = null;//µÀ¾ß
-var gameOver = null;//ÓÎÏ·½áÊø»­Ãæ
+var keyboard;//é”®ç›˜
+var keys = [];//è®°å½•æŒ‰ä¸‹çš„æŒ‰é”®
+var menu;//èœå•
+var intermediary;//è¿‡æ¸¡ç•Œé¢
+var stage;//èˆå°
+var player = null;//ç©å®¶1
+var player2 = null;//ç©å®¶2
+var enemyArray = [];//æ•Œæ–¹å¦å…‹
+var prop = null;//é“å…·
+var gameOver = null;//æ¸¸æˆç»“æŸç”»é¢
 
 
 
-var home_pos = [192,384];//¼ÒµÄÎ»ÖÃ
+var home_pos = [192,384];//å®¶çš„ä½ç½®
 
 var lev = 1;
 var level = null;
-var bulletArray = [];//×Óµ¯Êı×é
-var crackArray = [];//±¬Õ¨Êı×é
-var scoreArray = [];//·ÖÊıÊı×é
-var maxEnemy = 20;//µĞ·½Ì¹¿Ë×ÜÊı
-var maxAppearEnemy = 5;//ÆÁÄ»ÉÏÒ»Æğ³öÏÖµÄ×î´óÊı
-var enemyCount = 0; //ÒÑ³öÏÖ¹ıµÄµÄµĞ·½Ì¹¿Ë
-var initingEnemyArray = [];//ÕıÔÚ³õÊ¼»¯µÄµĞ·½Ì¹¿Ë
-var mapChangeIndexs = [];//Õâ¸öÊÇ¼ÇÂ¼µØÍ¼·¢Éú¸Ä±äÊ±µÄË÷Òı£¬Ö÷ÒªÊÇÎªÁËÌáÉı»æÍ¼Ğ§ÂÊ
+var bulletArray = [];//å­å¼¹æ•°ç»„
+var crackArray = [];//çˆ†ç‚¸æ•°ç»„
+var scoreArray = [];//åˆ†æ•°æ•°ç»„
+var maxEnemy = 20;//æ•Œæ–¹å¦å…‹æ€»æ•°
+var maxAppearEnemy = 5;//å±å¹•ä¸Šä¸€èµ·å‡ºç°çš„æœ€å¤§æ•°
+var enemyCount = 0; //å·²å‡ºç°è¿‡çš„çš„æ•Œæ–¹å¦å…‹
+var initingEnemyArray = [];//æ­£åœ¨åˆå§‹åŒ–çš„æ•Œæ–¹å¦å…‹
+var mapChangeIndexs = [];//è¿™ä¸ªæ˜¯è®°å½•åœ°å›¾å‘ç”Ÿæ”¹å˜æ—¶çš„ç´¢å¼•ï¼Œä¸»è¦æ˜¯ä¸ºäº†æå‡ç»˜å›¾æ•ˆç‡
 
-var prop_count_down = 0;//µÀ¾ßÏûÊ§µ¹¼ÆÊ±
-var emeny_count_down = 0;//µĞ·½Ì¹¿ËÍ£Ö¹µ¹¼ÆÊ±
-var home_protected_count_down = 0;//¼ÒµÄ±£»¤ÕÖÏûÊ§µ¹¼ÆÊ±
-//ÕâÊÇ¼ÒÖÜÎ§µÄ×©¿éË÷Òı
+var prop_count_down = 0;//é“å…·æ¶ˆå¤±å€’è®¡æ—¶
+var emeny_count_down = 0;//æ•Œæ–¹å¦å…‹åœæ­¢å€’è®¡æ—¶
+var home_protected_count_down = 0;//å®¶çš„ä¿æŠ¤ç½©æ¶ˆå¤±å€’è®¡æ—¶
+//è¿™æ˜¯å®¶å‘¨å›´çš„ç –å—ç´¢å¼•
 var home_wall_indexs = 
 [
 	[46,22],[46,23],[46,24],[46,25],
@@ -61,10 +61,10 @@ var home_wall_indexs =
 	[51,22],[51,23],[51,28],[51,29]
 ];
 
-var homeIsDestroy = false;//¼ÒÊÇ·ñ±»»÷»Ù
-var game_duration = 250;//Õâ¸öÖ÷ÒªÊÇÔÚÓÎÏ·½áÊø»òÕßÊ¤ÀûºóÒ»µãÑÓÊ±
+var homeIsDestroy = false;//å®¶æ˜¯å¦è¢«å‡»æ¯
+var game_duration = 250;//è¿™ä¸ªä¸»è¦æ˜¯åœ¨æ¸¸æˆç»“æŸæˆ–è€…èƒœåˆ©åä¸€ç‚¹å»¶æ—¶
 
-//Çå³ıËùÓĞ»­²¼
+//æ¸…é™¤æ‰€æœ‰ç”»å¸ƒ
 function clear_all()
 {
 	wallCtx.clearRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
@@ -78,7 +78,7 @@ function clear_all()
 	overCtx.clearRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 	menuCtx.clearRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 }
-//»Øµ½²Ëµ¥
+//å›åˆ°èœå•
 function back_to_menu()
 {
 	clear_all();
@@ -108,7 +108,7 @@ function back_to_menu()
 	game_duration = 250;
 }
 
-//³õÊ¼»¯»­²¼ÆÁÄ»
+//åˆå§‹åŒ–ç”»å¸ƒå±å¹•
 function Init_Screen()
 {
 	var wallCanvas = document.getElementById("wallCanvas");
@@ -177,10 +177,10 @@ function Init_Object()
 	collision = new Collision();
 }
 
-//´´½¨µÀ¾ß
+//åˆ›å»ºé“å…·
 function build_prop()
 {
-	//µÀ¾ßÀàĞÍ
+	//é“å…·ç±»å‹
 	var PROP_TYPES = [LIFE,TIMER,SPADE,BOMB,STAR,HELMET];
 	var TYPE = PROP_TYPES[parseInt(Math.random()*PROP_TYPES.length)];
 	var x = parseInt(Math.random()*(stage.level[0].length-1))*8;
@@ -189,7 +189,7 @@ function build_prop()
 	prop_count_down = 750;
 }
 
-//Ê¹ÓÃµÀ¾ß
+//ä½¿ç”¨é“å…·
 function use_prop(p)
 {
 	if(p==1)
@@ -217,13 +217,13 @@ function use_prop(p)
 				for(var i=0;i<enemyArray.length;i++)
 				{
 					enemyArray[i].isDestroy = true;
-					//Ìí¼Ó±¬Õ¨¶¯»­µ½Êı×é
+					//æ·»åŠ çˆ†ç‚¸åŠ¨ç”»åˆ°æ•°ç»„
 					crackArray.push(new Crack(
 						crackCtx,RESOURCE_IMAGE,
 						SCREEN_WIDTH,SCREEN_HEIGHT,
 						POS,CRACK_TANK,enemyArray[i].x,
 						enemyArray[i].y));
-					//Ìí¼Ó·ÖÊıÏÔÊ¾µ½Êı×é
+					//æ·»åŠ åˆ†æ•°æ˜¾ç¤ºåˆ°æ•°ç»„
 					scoreArray.push(new Score(
 						scoreCtx,RESOURCE_IMAGE,
 						SCREEN_WIDTH,SCREEN_HEIGHT,
@@ -255,7 +255,7 @@ function use_prop(p)
 				ANOTHER_PROP_AUDIO.play();
 				break;
 		};
-		//µÀ¾ß¼Ó·Ö
+		//é“å…·åŠ åˆ†
 		scoreArray.push(new Score(
 			scoreCtx,RESOURCE_IMAGE,
 			SCREEN_WIDTH,SCREEN_HEIGHT,
@@ -286,13 +286,13 @@ function use_prop(p)
 				for(var i=0;i<enemyArray.length;i++)
 				{
 					enemyArray[i].isDestroy = true;
-					//Ìí¼Ó±¬Õ¨¶¯»­µ½Êı×é
+					//æ·»åŠ çˆ†ç‚¸åŠ¨ç”»åˆ°æ•°ç»„
 					crackArray.push(new Crack(
 						crackCtx,RESOURCE_IMAGE,
 						SCREEN_WIDTH,SCREEN_HEIGHT,
 						POS,CRACK_TANK,enemyArray[i].x,
 						enemyArray[i].y));
-					//Ìí¼Ó·ÖÊıÏÔÊ¾µ½Êı×é
+					//æ·»åŠ åˆ†æ•°æ˜¾ç¤ºåˆ°æ•°ç»„
 					scoreArray.push(new Score(
 						scoreCtx,RESOURCE_IMAGE,
 						SCREEN_WIDTH,SCREEN_HEIGHT,
@@ -332,7 +332,7 @@ function use_prop(p)
 	prop_count_down = 0;
 	prop = null;
 }
-//Íæ¼Ò²Ù×÷º¯Êı
+//ç©å®¶æ“ä½œå‡½æ•°
 function KeyEvent()
 {
 	if(GAME_STATE == GAME_STATE_OVER)return;
@@ -393,7 +393,7 @@ function KeyEvent()
 			}
 		}
 
-		//³ÔµÀ¾ß
+		//åƒé“å…·
 		if(prop!=null&&collision.propHit(player,prop))
 		{
 			use_prop(1);
@@ -404,7 +404,7 @@ function KeyEvent()
 	}
 	else
 	{
-		//Ìí¼Ó±¬Õ¨¶¯»­µ½Êı×é
+		//æ·»åŠ çˆ†ç‚¸åŠ¨ç”»åˆ°æ•°ç»„
 		crackArray.push(new Crack(
 			crackCtx,RESOURCE_IMAGE,
 			SCREEN_WIDTH,SCREEN_HEIGHT,
@@ -415,7 +415,7 @@ function KeyEvent()
 		}
 	}
 
-	//Íæ¼Ò2ĞĞ¶¯
+	//ç©å®¶2è¡ŒåŠ¨
 	if(player2 != null)
 	{
 		if(!player2.isDestroy)
@@ -465,7 +465,7 @@ function KeyEvent()
 				}
 			}
 
-			//³ÔµÀ¾ß
+			//åƒé“å…·
 			if(prop!=null&&collision.propHit(player2,prop))
 			{
 				use_prop(2);
@@ -477,7 +477,7 @@ function KeyEvent()
 		}
 		else
 		{
-			//Ìí¼Ó±¬Õ¨¶¯»­µ½Êı×é
+			//æ·»åŠ çˆ†ç‚¸åŠ¨ç”»åˆ°æ•°ç»„
 			crackArray.push(new Crack(
 				crackCtx,RESOURCE_IMAGE,
 				SCREEN_WIDTH,SCREEN_HEIGHT,
@@ -545,27 +545,27 @@ function add_enemy()
 	var tank = new EnemyTank(tankCtx,RESOURCE_IMAGE,ENEMY_IMAGE,POS,enemyPos,type,life,score,isRed,dir);
 	tank.setLocation(elocation[0],elocation[1]);
 	tank.setStep(parseInt(Math.random()*20)+20);
-	//Ìí¼Óµ½ÕıÔÚ³õÊ¼»¯µÄÊı×éÖĞ
+	//æ·»åŠ åˆ°æ­£åœ¨åˆå§‹åŒ–çš„æ•°ç»„ä¸­
 	initingEnemyArray.push(tank);
 
 	enemyCount++;
 }
 
-//´¦ÀíËùÓĞÕıÔÚÓÎÏ·ÖĞµÄÊı¾İ
+//å¤„ç†æ‰€æœ‰æ­£åœ¨æ¸¸æˆä¸­çš„æ•°æ®
 function game_process()
 {
-	//ÅĞ¶ÏÓÎÏ·ÊÇ·ñ½áÊø
+	//åˆ¤æ–­æ¸¸æˆæ˜¯å¦ç»“æŸ
 	if(homeIsDestroy||(player.lives==0&&player.isDestroy&&player2 == null)
 		||(player.lives==0&&player.isDestroy&&player2!=null&&player2.lives==0&&player2.isDestroy))
 	{
 		GAME_STATE = GAME_STATE_OVER;
 	}
-	//ÅĞ¶ÏÓÎÏ·ÊÇ·ñÊ¤Àû
+	//åˆ¤æ–­æ¸¸æˆæ˜¯å¦èƒœåˆ©
 	if(!homeIsDestroy&&enemyCount == maxEnemy&&enemyArray.length==0&&initingEnemyArray.length==0)
 	{
 		GAME_STATE = GAME_STATE_WIN;
 	}
-	//Çå³ı²¥·ÅÍê±ÏµÄ±¬Õ¨ÌØĞ§
+	//æ¸…é™¤æ’­æ”¾å®Œæ¯•çš„çˆ†ç‚¸ç‰¹æ•ˆ
 	for(var i=crackArray.length-1;i>=0;i--)
 	{
 		if(crackArray[i].played)
@@ -573,7 +573,7 @@ function game_process()
 			crackArray.splice(i,1);
 		}
 	}
-	//´¦ÀíÏú»ÙµÄ×Óµ¯
+	//å¤„ç†é”€æ¯çš„å­å¼¹
 	for(var i=bulletArray.length-1;i>=0;i--)
 	{
 		if(bulletArray[i].isDestroy)
@@ -589,34 +589,34 @@ function game_process()
 			bulletArray.splice(i,1);
 		}
 	}
-	//´¦ÀíÏú»ÙµÄÌ¹¿Ë
+	//å¤„ç†é”€æ¯çš„å¦å…‹
 	for(var i=enemyArray.length-1;i>=0;i--)
 	{
 		if(enemyArray[i].isDestroy)
 		{
-			//Ìí¼Ó±¬Õ¨¶¯»­µ½Êı×é
+			//æ·»åŠ çˆ†ç‚¸åŠ¨ç”»åˆ°æ•°ç»„
 			crackArray.push(new Crack(
 				crackCtx,RESOURCE_IMAGE,
 				SCREEN_WIDTH,SCREEN_HEIGHT,
 				POS,CRACK_TANK,enemyArray[i].x,
 				enemyArray[i].y));
 
-			//Ìí¼Ó·ÖÊıÏÔÊ¾µ½Êı×é
+			//æ·»åŠ åˆ†æ•°æ˜¾ç¤ºåˆ°æ•°ç»„
 			scoreArray.push(new Score(
 				scoreCtx,RESOURCE_IMAGE,
 				SCREEN_WIDTH,SCREEN_HEIGHT,
 				POS,enemyArray[i].score,enemyArray[i].x,
 				enemyArray[i].y,6));
-			//ÒÆ³ı¸ÃÌ¹¿Ë
+			//ç§»é™¤è¯¥å¦å…‹
 			enemyArray.splice(i,1);
 			continue;
 		}
 	}
 
 	/*
-	 *Èç¹ûÒÑ¾­³öÏÖ¹ıµÄµĞ·½Ì¹¿ËÊıĞ¡ÓÚ×î´óµĞ·½Ì¹¿ËÊı
-	 *²¢ÇÒµ±Ç°ÆÁÄ»ÉÏµĞ·½Ì¹¿ËÊıÉÙÓÚ×î´óÔÊĞí³öÏÖµÄµĞ
-	 *·½Ì¹¿ËÊı¾Í´´½¨²¢Ìí¼ÓĞÂµÄµĞ·½Ì¹¿Ë¡£
+	 *å¦‚æœå·²ç»å‡ºç°è¿‡çš„æ•Œæ–¹å¦å…‹æ•°å°äºæœ€å¤§æ•Œæ–¹å¦å…‹æ•°
+	 *å¹¶ä¸”å½“å‰å±å¹•ä¸Šæ•Œæ–¹å¦å…‹æ•°å°‘äºæœ€å¤§å…è®¸å‡ºç°çš„æ•Œ
+	 *æ–¹å¦å…‹æ•°å°±åˆ›å»ºå¹¶æ·»åŠ æ–°çš„æ•Œæ–¹å¦å…‹ã€‚
 	 */
 	if(enemyCount<maxEnemy
 		&&enemyArray.length<maxAppearEnemy-1
@@ -625,8 +625,8 @@ function game_process()
 		add_enemy();
 	}
 	/*
-	 *Èç¹ûÕıÔÚ³õÊ¼»¯µÄÌ¹¿ËÒÑ³õÊ¼»¯Íê³É¾Í½«ÆäÌí¼Óµ½
-	 *ÒÑ³õÊ¼»¯Ì¹¿ËÊı×éÖĞ
+	 *å¦‚æœæ­£åœ¨åˆå§‹åŒ–çš„å¦å…‹å·²åˆå§‹åŒ–å®Œæˆå°±å°†å…¶æ·»åŠ åˆ°
+	 *å·²åˆå§‹åŒ–å¦å…‹æ•°ç»„ä¸­
 	 */
 	for(var i=initingEnemyArray.length-1;i>=0;i--)
 	{
@@ -642,7 +642,7 @@ function game_process()
 
 	if(emeny_count_down == 0)
 	{
-		//µĞ·½Ì¹¿ËĞĞ¶¯
+		//æ•Œæ–¹å¦å…‹è¡ŒåŠ¨
 		for(var i=enemyArray.length-1;i>=0;i--)
 		{
 			var fire_able = Math.random()*100>90;
@@ -683,11 +683,11 @@ function game_process()
 	{
 		emeny_count_down --;
 	}
-	//Íæ¼ÒĞĞ¶¯
+	//ç©å®¶è¡ŒåŠ¨
 
 	KeyEvent();
 
-	//×Óµ¯ĞĞ¶¯
+	//å­å¼¹è¡ŒåŠ¨
 	for(var i=0;i<bulletArray.length;++i)
 	{
 		if(bulletArray[i].isDestroy)continue;
@@ -748,7 +748,7 @@ function game_process()
 		}
 	}
 	
-	//µÀ¾ßÏûÊ§¼ÆÊ±
+	//é“å…·æ¶ˆå¤±è®¡æ—¶
 	if(prop != null)
 	{
 		if(prop.destroy_cout_down==0)
@@ -761,7 +761,7 @@ function game_process()
 		}
 	}
 
-	//¼ÒµÄ·À»¤È¦ÏûÊ§¼ÆÊ±
+	//å®¶çš„é˜²æŠ¤åœˆæ¶ˆå¤±è®¡æ—¶
 	if(home_protected_count_down > 0)
 	{
 		var BLOCK_TYPE = GRID;
@@ -776,7 +776,7 @@ function game_process()
 		home_protected_count_down --;
 	}
 
-	//·ÖÊıÏÔÊ¾ÏûÊ§¼ÆÊ±
+	//åˆ†æ•°æ˜¾ç¤ºæ¶ˆå¤±è®¡æ—¶
 	for(var i=scoreArray.length-1;i>=0;i--)
 	{
 		if(!scoreArray[i].viewed)
@@ -787,16 +787,16 @@ function game_process()
 		scoreArray.splice(i,1);
 	}
 }
-//ÓÎÏ·½áÊø»­Ãæ»æÖÆ
+//æ¸¸æˆç»“æŸç”»é¢ç»˜åˆ¶
 function paint_over()
 {
 	gameOver.paint();
 	return gameOver.clock();
 }
-//»æÖÆ×´Ì¬À¸
+//ç»˜åˆ¶çŠ¶æ€æ 
 function paint_status()
 {
-	//Ô¤±¸µÄAIÌ¹¿ËÊı
+	//é¢„å¤‡çš„AIå¦å…‹æ•°
 	var surplus_enemy = maxEnemy - enemyCount;
 	var offsetX = 464;
 	var offsetY = 16;
@@ -863,10 +863,10 @@ function paint_status()
 	}
 	
 }
-//»æ»­ËùÓĞÔªËØ
+//ç»˜ç”»æ‰€æœ‰å…ƒç´ 
 function paint_all()
 {
-	//ÏÔÊ¾µÀ¾ß
+	//æ˜¾ç¤ºé“å…·
 	if(prop != null)
 	{
 		prop.paint();
@@ -875,13 +875,13 @@ function paint_all()
 	{
 		propCtx.clearRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 	}
-	//ÏÔÊ¾·ÖÊı
+	//æ˜¾ç¤ºåˆ†æ•°
 	scoreCtx.clearRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 	for(var i=0;i<scoreArray.length;i++)
 	{
 		scoreArray[i].paint();
 	}
-	//¸üĞÂµØÍ¼
+	//æ›´æ–°åœ°å›¾
 	if(home_protected_count_down<=250&&home_protected_count_down%10==0)
 	{
 		stage.update_map(home_wall_indexs);
@@ -968,12 +968,12 @@ $(document).keydown(function(e){
 	switch(GAME_STATE)
 	{
 		case GAME_STATE_MENU:
-			//ÅĞ¶ÏÊÇ·ñ°´ÏÂÉÏÏÂ¼ü²¢ÇÒÓÎÏ·¿ªÊ¼²Ëµ¥ÒÑÍê³É³õÊ¼»¯
+			//åˆ¤æ–­æ˜¯å¦æŒ‰ä¸‹ä¸Šä¸‹é”®å¹¶ä¸”æ¸¸æˆå¼€å§‹èœå•å·²å®Œæˆåˆå§‹åŒ–
 			if(keyCode == keyboard.UP||keyCode == keyboard.DOWN&&menu.initted)
 			{
 				menu.change();
 			}
-			//ÅĞ¶ÏÊÇ·ñ°´ÏÂ»Ø³µ¼ü²¢ÇÒÓÎÏ·¿ªÊ¼²Ëµ¥ÒÑÍê³É³õÊ¼»¯
+			//åˆ¤æ–­æ˜¯å¦æŒ‰ä¸‹å›è½¦é”®å¹¶ä¸”æ¸¸æˆå¼€å§‹èœå•å·²å®Œæˆåˆå§‹åŒ–
 			if(keyCode == keyboard.ENTER&&menu.initted)
 			{
 				player = new PlayerTank(tankCtx,RESOURCE_IMAGE,POS,PLAYER_1,UP);
@@ -989,7 +989,7 @@ $(document).keydown(function(e){
 			}
 			break;
 		case GAME_STATE_INIT:
-			//ÅĞ¶ÏÊÇ·ñ°´ÏÂ»Ø³µ¼ü²¢ÇÒ¹ı¶É¶¯»­ÒÑ½áÊø
+			//åˆ¤æ–­æ˜¯å¦æŒ‰ä¸‹å›è½¦é”®å¹¶ä¸”è¿‡æ¸¡åŠ¨ç”»å·²ç»“æŸ
 			if(keyCode == keyboard.ENTER&&intermediary.initted)
 			{
 				intermediary.game_started = true;

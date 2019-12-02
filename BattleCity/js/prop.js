@@ -1,5 +1,5 @@
 /*
- *µÀ¾ßÀà
+ *é“å…·ç±»
 */
 
 class Prop
@@ -16,7 +16,7 @@ class Prop
 		this.y = y;
 		this.offsetX = 32;
 		this.offsetY = 16;
-		this.destroy_cout_down = 750;//µÀ¾ßÏûÊ§µ¹¼ÆÊ±
+		this.destroy_cout_down = 750;//é“å…·æ¶ˆå¤±å€’è®¡æ—¶
 		this.isDestroy = false;
 	}
 	paint()

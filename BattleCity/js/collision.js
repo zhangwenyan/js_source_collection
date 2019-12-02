@@ -1,5 +1,5 @@
 /*
- *¼ÆËãÅö×²
+ *è®¡ç®—ç¢°æ’
 */
 
 class Collision
@@ -8,7 +8,7 @@ class Collision
 	{
 		
 	}
-	//ÅĞ¶ÏÊÇ·ñÖØµş
+	//åˆ¤æ–­æ˜¯å¦é‡å 
 	isCross(rc1,rc2)
 	{
 		return rc1.x + rc1.w  > rc2.x &&
@@ -17,12 +17,12 @@ class Collision
 			rc2.y + rc2.h > rc1.y;
 	}
 	/*
-	 *¼ì²âÌ¹¿ËÊÇ·ñÅö×²
-	 *tank¸Ã²ÎÊı´ú±íµ±Ç°Ì¹¿Ë
+	 *æ£€æµ‹å¦å…‹æ˜¯å¦ç¢°æ’
+	 *tankè¯¥å‚æ•°ä»£è¡¨å½“å‰å¦å…‹
 	*/
 	tanIsHit(tank,level,tanks)
 	{
-		//¼ì²âÊÇ·ñÓëÆäËûÌ¹¿ËÅö×²
+		//æ£€æµ‹æ˜¯å¦ä¸å…¶ä»–å¦å…‹ç¢°æ’
 		for(var i=0;i<tanks.length;++i)
 		{
 			if(tank === tanks[i])continue;
@@ -68,7 +68,7 @@ class Collision
 				return true;
 			}
 		}
-		//¼ì²âÊÇ·ñÓëµØÍ¼Åö×²
+		//æ£€æµ‹æ˜¯å¦ä¸åœ°å›¾ç¢°æ’
 		if(tank.x%16!=0||tank.y%16!=0)return false;
 
 		if(tank.dir == UP)
@@ -150,7 +150,7 @@ class Collision
 		return false;
 	}
 	/*
-	 *¼ì²â×Óµ¯Åö×²
+	 *æ£€æµ‹å­å¼¹ç¢°æ’
 	*/
 	getHitResult(bullet,bullets,level,tanks)
 	{
@@ -158,34 +158,34 @@ class Collision
 		var cols = level[0].length;
 
 		var data = {};
-		//±»Ïú»ÙµÄµÄµØÍ¼ÔªËØË÷ÒıÊı×é
+		//è¢«é”€æ¯çš„çš„åœ°å›¾å…ƒç´ ç´¢å¼•æ•°ç»„
 		data.destroyElementIndexArray = [];
-		//µ±Ç°×Óµ¯ÊÇ·ñÒÑ·¢ÉúÅö×²
+		//å½“å‰å­å¼¹æ˜¯å¦å·²å‘ç”Ÿç¢°æ’
 		data.isHit = false;
-		//·ÖÊıÍ³¼Æ,½öµ±ÊÇÍæ¼ÒÓĞĞ§
+		//åˆ†æ•°ç»Ÿè®¡,ä»…å½“æ˜¯ç©å®¶æœ‰æ•ˆ
 		data.score = 0;
-		//±ê¼Ç¼ÒÊÇ·ñ±»»÷»Ù
+		//æ ‡è®°å®¶æ˜¯å¦è¢«å‡»æ¯
 		data.homeIsDestroy = false;
-		//±ê¼ÇÊÇ·ñ»÷ÖĞºìÉ«Ì¹¿Ë
+		//æ ‡è®°æ˜¯å¦å‡»ä¸­çº¢è‰²å¦å…‹
 		data.theRedTankHasHit = false;
-		//±ê¼ÇÊÇ·ñÓĞ·¢ÉúÁËÅö×²µ«ÓĞÄ¿±êÎ´±»»÷»Ù
+		//æ ‡è®°æ˜¯å¦æœ‰å‘ç”Ÿäº†ç¢°æ’ä½†æœ‰ç›®æ ‡æœªè¢«å‡»æ¯
 		data.hit_and_had_undestroy = false;
-		//±ê¼Ç»÷ÖĞµÄÌ¹¿ËÊÇ·ñÎ´±»Ïú»Ù
+		//æ ‡è®°å‡»ä¸­çš„å¦å…‹æ˜¯å¦æœªè¢«é”€æ¯
 		data.enemy_hit_and_undestroy = false;
-		//±ê¼ÇÊÇ·ñÓĞÌ¹¿Ë±»Ïú»Ù
+		//æ ‡è®°æ˜¯å¦æœ‰å¦å…‹è¢«é”€æ¯
 		data.enemy_has_destroy = false;
 		/*
-		 *¼ì²âÊÇ·ñÓëÆäËü×Óµ¯ÀàĞÍ²»Í¬
-		 *Èç¹û²»Í¬Ôò¼ì²âÊÇ·ñ·¢ÉúÅö×²
+		 *æ£€æµ‹æ˜¯å¦ä¸å…¶å®ƒå­å¼¹ç±»å‹ä¸åŒ
+		 *å¦‚æœä¸åŒåˆ™æ£€æµ‹æ˜¯å¦å‘ç”Ÿç¢°æ’
 		*/
 		
 		for(var i=0;i<bullets.length;++i)
 		{
-			//Èç¹û×Óµ¯ÊÇÓÑ·½µÄ£¬Ìø¹ı±¾´ÎÑ­»·
+			//å¦‚æœå­å¼¹æ˜¯å‹æ–¹çš„ï¼Œè·³è¿‡æœ¬æ¬¡å¾ªç¯
 			if((bullet.type == BULLET_TYPE_PLAYER1&&bullets[i].type == BULLET_TYPE_PLAYER2)
 				||(bullet.type == BULLET_TYPE_PLAYER2&&bullets[i].type == BULLET_TYPE_PLAYER1)
 				||(bullet.type == BULLET_TYPE_ENEMY&&bullets[i].type == BULLET_TYPE_ENEMY))continue;
-			//Ö»ÓĞÏà·´·½ÏòµÄ×Óµ¯²ÅÄÜÅö×²²¢ÇÒÄ¿±ê×Óµ¯Î´±»Ïú»Ù,·ñÔòÌø¹ı±¾´ÎÑ­»·
+			//åªæœ‰ç›¸åæ–¹å‘çš„å­å¼¹æ‰èƒ½ç¢°æ’å¹¶ä¸”ç›®æ ‡å­å¼¹æœªè¢«é”€æ¯,å¦åˆ™è·³è¿‡æœ¬æ¬¡å¾ªç¯
 			if((bullet.dir+bullets[i].dir != UP+DOWN
 				&&bullet.dir+bullets[i].dir != LEFT+RIGHT)
 				||bullets[i].isDestroy)continue;
@@ -240,10 +240,10 @@ class Collision
 			}
 		}
 		
-		//¼ì²âÊÇ¶Ô·½Ì¹¿Ë·¢ÉúÅö×²
+		//æ£€æµ‹æ˜¯å¯¹æ–¹å¦å…‹å‘ç”Ÿç¢°æ’
 		for(var i=0;i<tanks.length;++i)
 		{
-			//Èç¹ûÄ¿±êÊÇÓÑ·½£¬Ìø¹ı±¾´ÎÑ­»·
+			//å¦‚æœç›®æ ‡æ˜¯å‹æ–¹ï¼Œè·³è¿‡æœ¬æ¬¡å¾ªç¯
 			if((bullet.type == BULLET_TYPE_PLAYER1&&(tanks[i].type == PLAYER_2||tanks[i].type == PLAYER_1))
 				||(bullet.type == BULLET_TYPE_PLAYER2&&(tanks[i].type == PLAYER_2||tanks[i].type == PLAYER_1))
 				||(bullet.type == BULLET_TYPE_ENEMY&&tanks[i].type != PLAYER_1&&tanks[i].type != PLAYER_2))continue;
@@ -290,13 +290,13 @@ class Collision
 				rect_b.h = 4;
 			}
 			
-			//·µ»ØtrueËµÃ÷·¢ÉúÅö×²
+			//è¿”å›trueè¯´æ˜å‘ç”Ÿç¢°æ’
 			if(this.isCross(rect_a,rect_b))
 			{
 				
 				data.isHit = true;
 				bullet.isDestroy = true;
-				//Èç¹û×Óµ¯ÊÇAIÌ¹¿ËµÄ£¬²¢ÇÒµ±Ç°Ì¹¿ËÊÇÍæ¼ÒÌ¹¿Ë²¢´¦ÓÚÎŞµĞ×´Ì¬£¬Ïú»Ù×Óµ¯£¬Ìø¹ı±¾´ÎÑ­»·
+				//å¦‚æœå­å¼¹æ˜¯AIå¦å…‹çš„ï¼Œå¹¶ä¸”å½“å‰å¦å…‹æ˜¯ç©å®¶å¦å…‹å¹¶å¤„äºæ— æ•ŒçŠ¶æ€ï¼Œé”€æ¯å­å¼¹ï¼Œè·³è¿‡æœ¬æ¬¡å¾ªç¯
 				if((bullet.type == BULLET_TYPE_ENEMY&&(tanks[i].type == PLAYER_1||tanks[i].type == PLAYER_2)&&tanks[i].immuneDuration>0))continue;
 
 				
@@ -308,7 +308,7 @@ class Collision
 				}
 				if(tanks[i].life == 0)
 				{
-					//Èç¹ûÊÇAIÌ¹¿Ë±»»÷»Ù£¬¾Í¿ªÊ¼¼Æ·Ö
+					//å¦‚æœæ˜¯AIå¦å…‹è¢«å‡»æ¯ï¼Œå°±å¼€å§‹è®¡åˆ†
 					if(tanks[i].type != PLAYER_1&&tanks[i].type != PLAYER_2)
 					{
 						data.score += tanks[i].score;
@@ -324,11 +324,11 @@ class Collision
 			}
 		}
 
-		//¼ì²â×Óµ¯ÊÇ·ñÓëµØÍ¼Åö×²
+		//æ£€æµ‹å­å¼¹æ˜¯å¦ä¸åœ°å›¾ç¢°æ’
 		if(bullet.x%8!=0||bullet.y%8!=0)return data;
 		if(bullet.dir == UP)
 		{
-			//ÓëÎèÌ¨ÉÏ±ßÔµ·¢ÉúÅö×²
+			//ä¸èˆå°ä¸Šè¾¹ç¼˜å‘ç”Ÿç¢°æ’
 			if(bullet.y==0)
 			{
 				bullet.isDestroy = true;
@@ -344,7 +344,7 @@ class Collision
 			var twoce_find_grid = false;
 			for(var k=0;k<4;k++)
 			{
-				//¼ì²âÊÇ·ñ·¢ÉúÅö×²
+				//æ£€æµ‹æ˜¯å¦å‘ç”Ÿç¢°æ’
 				if(level[i][j+k].type == WALL||level[i][j+k].type == GRID)
 				{
 					data.isHit = true;
@@ -399,7 +399,7 @@ class Collision
 		}
 		else if(bullet.dir == DOWN)
 		{
-			//ÓëÎèÌ¨ÏÂ±ßÔµ·¢ÉúÅö×²
+			//ä¸èˆå°ä¸‹è¾¹ç¼˜å‘ç”Ÿç¢°æ’
 			if(bullet.y==ROWS*8)
 			{
 				bullet.isDestroy = true;
@@ -415,7 +415,7 @@ class Collision
 
 			for(var k=0;k<4;k++)
 			{
-				//¼ì²âÊÇ·ñ·¢ÉúÅö×²
+				//æ£€æµ‹æ˜¯å¦å‘ç”Ÿç¢°æ’
 				if(level[i][j+k].type == HOME)
 				{
 					data.homeIsDestroy = true;
@@ -507,7 +507,7 @@ class Collision
 			var twoce_find_grid = false;
 			for(var k=0;k<4;k++)
 			{
-				//¼ì²âÊÇ·ñ·¢ÉúÅö×²
+				//æ£€æµ‹æ˜¯å¦å‘ç”Ÿç¢°æ’
 				if(level[i+k][j].type == HOME)
 				{
 					data.homeIsDestroy = true;
@@ -594,7 +594,7 @@ class Collision
 			var twoce_find_grid = false;
 			for(var k=0;k<4;k++)
 			{
-				//¼ì²âÊÇ·ñ·¢ÉúÅö×²
+				//æ£€æµ‹æ˜¯å¦å‘ç”Ÿç¢°æ’
 				if(level[i+k][j].type == HOME)
 				{
 					data.homeIsDestroy = true;

@@ -1,5 +1,5 @@
 /*
- *³¡¾°Àà
+ *åœºæ™¯ç±»
 */
 
 class Stage
@@ -15,12 +15,12 @@ class Stage
 		this.offsetX = 32;
 		this.offsetY = 16;
 	}
-	//ÉèÖÃ¹Ø¿¨
+	//è®¾ç½®å…³å¡
 	setLevel(level)
 	{
 		this.level = level;
 	}
-	update_map(changeIndexs)//¾Ö²¿Ë¢ĞÂ»áÌáÉıĞ§ÂÊ
+	update_map(changeIndexs)//å±€éƒ¨åˆ·æ–°ä¼šæå‡æ•ˆç‡
 	{
 		for(var k=0;k<changeIndexs.length;++k)
 		{

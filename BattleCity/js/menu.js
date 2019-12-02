@@ -1,5 +1,5 @@
 /*
- *²Ëµ¥Àà
+ *èœå•ç±»
 */
 class Menu
 {
@@ -13,7 +13,7 @@ class Menu
 		this.cutPos = cutPos;
 		this.selected = 0;
 		this.drawYPos = sh;
-		this.initted = false;//±ê¼Ç²Ëµ¥¶¯»­ÊÇ·ñ³õÊ¼»¯Íê³É
+		this.initted = false;//æ ‡è®°èœå•åŠ¨ç”»æ˜¯å¦åˆå§‹åŒ–å®Œæˆ
 	}
 	reset_status()
 	{

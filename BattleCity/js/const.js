@@ -1,14 +1,14 @@
 /**
- * ¾²Ì¬±äÁ¿
+ * é™æ€å˜é‡
  */
 
-var SCREEN_WIDTH = 512; //ÆÁÄ»¿í
-var SCREEN_HEIGHT = 448;//ÆÁÄ»¸ß
+var SCREEN_WIDTH = 512; //å±å¹•å®½
+var SCREEN_HEIGHT = 448;//å±å¹•é«˜
 var ROWS = 52;
 var COLS = 52;
 
 
-/**************Í¼Æ¬×ÊÔ´*****************/
+/**************å›¾ç‰‡èµ„æº*****************/
 var MENU_IMAGE = new Image();
 MENU_IMAGE.src = "Graphics/menu.png";
 var RESOURCE_IMAGE = new Image();
@@ -23,7 +23,7 @@ var GAME_OVER_IMG = new Image();
 GAME_OVER_IMG.src = "Graphics/game_over.png";
 
 
-/**************¸÷¸öÍ¼¿éÔÚÍ¼Æ¬ÖĞµÄÎ»ÖÃ*****************/
+/**************å„ä¸ªå›¾å—åœ¨å›¾ç‰‡ä¸­çš„ä½ç½®*****************/
 var POS = {};
 POS["selectTank"] = [128,96];
 POS["stageLevel"] = [396,96];
@@ -45,33 +45,33 @@ POS["playerFlagTwo"] = [30,112];
 POS["enemyFlag"] = [92,112];
 POS["flag"] = [60,112];
 
-/**************ÉùÒô×ÊÔ´*****************/
-var START_AUDIO = new Audio("audio/intro.mp3");//¿ªÊ¼ÒôÀÖ
-var GAME_OVER_AUDIO = new Audio("audio/gameOver.mp3");//ÓÎÏ·Ê§°Ü
-var GAME_PAUSE_AUDIO = new Audio("audio/game.pause.mp3");//ÓÎÏ·ÔİÍ£
-var SCORE_COUNT_AUDIO = new Audio("audio/total.score.tick.mp3");//Ê¤Àûºó·ÖÊıÍ³¼Æ
-var HIGHT_SCORE_AUDIO = new Audio("audio/hi.mp3");//ÓÎÏ·½áÊøºó·ÖÊıìÅÒ«
-var ATTACK_AUDIO = new Audio("audio/shoot.mp3");//·¢Éä×Óµ¯
+/**************å£°éŸ³èµ„æº*****************/
+var START_AUDIO = new Audio("audio/intro.mp3");//å¼€å§‹éŸ³ä¹
+var GAME_OVER_AUDIO = new Audio("audio/gameOver.mp3");//æ¸¸æˆå¤±è´¥
+var GAME_PAUSE_AUDIO = new Audio("audio/game.pause.mp3");//æ¸¸æˆæš‚åœ
+var SCORE_COUNT_AUDIO = new Audio("audio/total.score.tick.mp3");//èƒœåˆ©ååˆ†æ•°ç»Ÿè®¡
+var HIGHT_SCORE_AUDIO = new Audio("audio/hi.mp3");//æ¸¸æˆç»“æŸååˆ†æ•°ç‚«è€€
+var ATTACK_AUDIO = new Audio("audio/shoot.mp3");//å‘å°„å­å¼¹
 
-var CREATE_PROP_AUDIO = new Audio("audio/prop.create.mp3");//Éú³ÉµÀ¾ß
-var USE_BOMB_AUDIO = new Audio("audio/bonus.bomb.mp3");//³ÔÕ¨µ¯
-var ADD_LIFE_AUDIO = new Audio("audio/bonus.life.mp3");//¼ÓÃü
-var UPGRADE_POWER_AUDIO = new Audio("audio/star.mp3");//³ÔÎå½ÇĞÇ¼Ó»ğÁ¦
-var ANOTHER_PROP_AUDIO = new Audio("audio/bonus.default.mp3");//³ÔÆäËüµÀ¾ß
+var CREATE_PROP_AUDIO = new Audio("audio/prop.create.mp3");//ç”Ÿæˆé“å…·
+var USE_BOMB_AUDIO = new Audio("audio/bonus.bomb.mp3");//åƒç‚¸å¼¹
+var ADD_LIFE_AUDIO = new Audio("audio/bonus.life.mp3");//åŠ å‘½
+var UPGRADE_POWER_AUDIO = new Audio("audio/star.mp3");//åƒäº”è§’æ˜ŸåŠ ç«åŠ›
+var ANOTHER_PROP_AUDIO = new Audio("audio/bonus.default.mp3");//åƒå…¶å®ƒé“å…·
 
-var ENEMY_MOVE_AUDIO = new Audio("audio/enemy.move.mp3");//µĞ·½Ì¹¿ËÒÆ¶¯
-var PLAYER_STATIC_AUDIO = new Audio("audio/holostij.mp3");//Íæ¼Ò¾²Ö¹
-var PLAYER_MOVE_AUDIO = new Audio("audio/player.move.mp3");//Íæ¼ÒÌ¹¿ËÒÆ¶¯
+var ENEMY_MOVE_AUDIO = new Audio("audio/enemy.move.mp3");//æ•Œæ–¹å¦å…‹ç§»åŠ¨
+var PLAYER_STATIC_AUDIO = new Audio("audio/holostij.mp3");//ç©å®¶é™æ­¢
+var PLAYER_MOVE_AUDIO = new Audio("audio/player.move.mp3");//ç©å®¶å¦å…‹ç§»åŠ¨
 
-var BULLET_DESTROY_AUDIO = new Audio("audio/bullet.destroy.mp3");//×Óµ¯±»Ïú»Ù
-var ENEMY_HIT_AUDIO = new Audio("audio/enemy.armor.hit.mp3");//µĞ·½Ì¹¿Ë±»»÷ÖĞµ«Î´»÷»Ù
-var BRICK_DESTROY_AUDIO = new Audio("audio/brickErase.mp3");//×©¿é±»Ïú»Ù
-var BULLET_OUT_MAP_AUDIO = new Audio("audio/block.mp3");//×Óµ¯Óë±ß½ç»ò¸ÖÇ½Åö×²
+var BULLET_DESTROY_AUDIO = new Audio("audio/bullet.destroy.mp3");//å­å¼¹è¢«é”€æ¯
+var ENEMY_HIT_AUDIO = new Audio("audio/enemy.armor.hit.mp3");//æ•Œæ–¹å¦å…‹è¢«å‡»ä¸­ä½†æœªå‡»æ¯
+var BRICK_DESTROY_AUDIO = new Audio("audio/brickErase.mp3");//ç –å—è¢«é”€æ¯
+var BULLET_OUT_MAP_AUDIO = new Audio("audio/block.mp3");//å­å¼¹ä¸è¾¹ç•Œæˆ–é’¢å¢™ç¢°æ’
 
-var TANK_DESTROY_AUDIO = new Audio("audio/kill.mp3");//Ì¹¿Ë±»»÷»Ù
-var HOME_DESTROY_AUDIO = new Audio("audio/buh.mp3");//¼Ò±»»÷»Ù
+var TANK_DESTROY_AUDIO = new Audio("audio/kill.mp3");//å¦å…‹è¢«å‡»æ¯
+var HOME_DESTROY_AUDIO = new Audio("audio/buh.mp3");//å®¶è¢«å‡»æ¯
 
-/**************ÓÎÏ·×´Ì¬*****************/
+/**************æ¸¸æˆçŠ¶æ€*****************/
 var GAME_STATE_MENU = 0;
 var GAME_STATE_INIT = 1;
 var GAME_STATE_PLAYING = 2;
@@ -79,7 +79,7 @@ var GAME_STATE_OVER = 3;
 var GAME_STATE_WIN = 4;
 
 
-/**************µØÍ¼¿é*****************/
+/**************åœ°å›¾å—*****************/
 var WALL = 1;
 var GRID = 2;
 var GRASS = 3;
@@ -88,13 +88,13 @@ var ICE = 5;
 var HOME_D = 8;
 var HOME = 9;
 
-/**************Ì¹¿Ë¼°×Óµ¯µÄËÄ¸ö·½Ïò*****************/
+/**************å¦å…‹åŠå­å¼¹çš„å››ä¸ªæ–¹å‘*****************/
 var UP = 0;
 var DOWN = 1;
 var LEFT = 2;
 var RIGHT = 3;
 
-/**************µĞ·½Ì¹¿ËÀàĞÍ*****************/
+/**************æ•Œæ–¹å¦å…‹ç±»å‹*****************/
 var ENEMY_TYPES = 
 [
 	{type:1,life:1,score:100,pos:[[0,0]],isRed:false},
@@ -105,27 +105,27 @@ var ENEMY_TYPES =
 	{type:6,life:5,score:500,pos:[[0,224],[0,192],[0,128],[0,160],[0,192]],isRed:true},
 	{type:7,life:2,score:200,pos:[[0,128],[0,192]],isRed:false}
 ];
-/**************Íæ¼ÒÌ¹¿ËÉú³ÉµÄÎ»ÖÃ*****************/
+/**************ç©å®¶å¦å…‹ç”Ÿæˆçš„ä½ç½®*****************/
 var PLAYER_LIVE_POS = [[128,384],[256,384]];
-/**************µĞ·½Ì¹¿ËÉú³ÉµÄÎ»ÖÃ*****************/
+/**************æ•Œæ–¹å¦å…‹ç”Ÿæˆçš„ä½ç½®*****************/
 var ENEMY_LIVE_POS = [[0,0],[192,0],[384,0]];
-/**************×Óµ¯ÀàĞÍ*****************/
+/**************å­å¼¹ç±»å‹*****************/
 var BULLET_TYPE_PLAYER1 = 1;
 var BULLET_TYPE_PLAYER2 = 2;
 var BULLET_TYPE_ENEMY = 3;
-/**************Íæ¼ÒÀàĞÍ*****************/
+/**************ç©å®¶ç±»å‹*****************/
 var PLAYER_1 = -1;
 var PLAYER_2 = 0;
 
-/**************±¬Õ¨ÀàĞÍ****************/
-var CRACK_BULLET = 1;//×Óµ¯±¬Õ¨
-var CRACK_TANK = 2;//Ì¹¿Ë±¬Õ¨
-var CRACK_HOME = 3;//¼Ò±¬Õ¨
+/**************çˆ†ç‚¸ç±»å‹****************/
+var CRACK_BULLET = 1;//å­å¼¹çˆ†ç‚¸
+var CRACK_TANK = 2;//å¦å…‹çˆ†ç‚¸
+var CRACK_HOME = 3;//å®¶çˆ†ç‚¸
 
-/**************µÀ¾ßÀàĞÍ***************/
-var LIFE = 1;//Ãü
-var TIMER = 2;//¶¨Ê±Æ÷
-var SPADE = 3;//ÌúÇÂ
-var BOMB = 4;//Õ¨µ¯
-var STAR = 5;//Îå½ÇĞÇ
-var HELMET = 6;//¸Ö¿ø
+/**************é“å…·ç±»å‹***************/
+var LIFE = 1;//å‘½
+var TIMER = 2;//å®šæ—¶å™¨
+var SPADE = 3;//é“é”¹
+var BOMB = 4;//ç‚¸å¼¹
+var STAR = 5;//äº”è§’æ˜Ÿ
+var HELMET = 6;//é’¢ç›”

@@ -1,5 +1,5 @@
 /*
- *Ì¹¿ËÀà
+ *å¦å…‹ç±»
 */
 
 class Tank
@@ -9,18 +9,18 @@ class Tank
 		this.ctx = ctx;
 		this.resource = resource;
 		this.cutPos = cutPos;
-		this.dir = dir;//·½Ïò
+		this.dir = dir;//æ–¹å‘
 		this.x = 0;
 		this.y = 0;
-		this.type = type;//Ì¹¿ËÀàĞÍ
-		this.life = life;//ÉúÃü
-		this.power = 1;//»ğÁ¦
-		this.bullet_speed = 4;//²úÉúµÄ×Óµ¯µÄËÙ¶È
-		this.fire_delay = 32;//¹¥»÷ÑÓÊ±
-		this.fire_cout_down = 0;//¹¥»÷µ¹¼ÆÊ±£¬µ¹¼ÆÊ±Îª0Ê±·½¿ÉÔÙ´Î¹¥»÷
+		this.type = type;//å¦å…‹ç±»å‹
+		this.life = life;//ç”Ÿå‘½
+		this.power = 1;//ç«åŠ›
+		this.bullet_speed = 4;//äº§ç”Ÿçš„å­å¼¹çš„é€Ÿåº¦
+		this.fire_delay = 32;//æ”»å‡»å»¶æ—¶
+		this.fire_cout_down = 0;//æ”»å‡»å€’è®¡æ—¶ï¼Œå€’è®¡æ—¶ä¸º0æ—¶æ–¹å¯å†æ¬¡æ”»å‡»
 
-		this.speed = 2;//ĞĞ×ßËÙ¶È
-		this.isDestroy = false;//ÊÇ·ñÏú»Ù
+		this.speed = 2;//è¡Œèµ°é€Ÿåº¦
+		this.isDestroy = false;//æ˜¯å¦é”€æ¯
 		this.offsetX = 32;
 		this.offsetY = 16;
 	}
@@ -37,7 +37,7 @@ class Tank
 	{
 		var preDir = this.dir;
 		this.dir = dir;
-		//·½ÏòÇĞ»»£¬ÖØĞÂ½ÃÕıÎ»ÖÃ
+		//æ–¹å‘åˆ‡æ¢ï¼Œé‡æ–°çŸ«æ­£ä½ç½®
 		if(preDir==UP&&(this.dir==LEFT||this.dir==RIGHT))
 		{
 			this.y = Math.round(this.y/16)*16;
@@ -120,12 +120,12 @@ class EnemyTank extends Tank
 		super(ctx,resource,cutPos,type,life,dir);
 		this.enemy_resource = enemy_resource;
 		this.enemyPos = enemyPos;
-		this.step = 4;//Õâ¸öÊÇµĞ·½Ì¹¿Ë¿ÉĞĞ×ßµÄ²½Êı£¬Ëü»áµİ¼õ£¬Ö±µ½Îª0Ê±£¬»áÔÙ´ÎËæ»ú·½ÏòÖµºÍ²½Êı
+		this.step = 4;//è¿™ä¸ªæ˜¯æ•Œæ–¹å¦å…‹å¯è¡Œèµ°çš„æ­¥æ•°ï¼Œå®ƒä¼šé€’å‡ï¼Œç›´åˆ°ä¸º0æ—¶ï¼Œä¼šå†æ¬¡éšæœºæ–¹å‘å€¼å’Œæ­¥æ•°
 		this.core = 100;
 		this.isRed = isRed;
 		this.speed = 1;
-		this.fire_delay = 96;//¹¥»÷ÑÓÊ±
-		this.initingDuration = 42;//ÎŞµĞÊ±¼ä
+		this.fire_delay = 96;//æ”»å‡»å»¶æ—¶
+		this.initingDuration = 42;//æ— æ•Œæ—¶é—´
 	}
 	setStep(step)
 	{
@@ -177,13 +177,13 @@ class PlayerTank extends Tank
 		this.max_bullet_power = 2;
 		this.max_bullet_speed = 8;
 		this.min_fire_delay = 8;
-		this.fire_delay = 16;//¹¥»÷ÑÓÊ±
+		this.fire_delay = 16;//æ”»å‡»å»¶æ—¶
 		this.immuneDuration = 100;
 		this.immuneEffectFrame = 0;
 		this.x = PLAYER_LIVE_POS[this.type+1][0];
 		this.y = PLAYER_LIVE_POS[this.type+1][1];
 	}
-	//Ã¿µ±ÏÂÒ»¹ØÊ±ĞèÒªÖØÖÃÍæ¼ÒÎ»ÖÃ£¬²¢³õÊ¼»¯ÎŞµĞÊ±¼ä
+	//æ¯å½“ä¸‹ä¸€å…³æ—¶éœ€è¦é‡ç½®ç©å®¶ä½ç½®ï¼Œå¹¶åˆå§‹åŒ–æ— æ•Œæ—¶é—´
 	reset_status()
 	{
 		this.dir = UP;

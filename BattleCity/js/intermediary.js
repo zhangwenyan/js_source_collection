@@ -1,5 +1,5 @@
 /*
- *过渡动画效果
+ *杩囨浮鍔ㄧ敾鏁堟灉
 */
 
 class Intermediary
